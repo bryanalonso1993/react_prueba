@@ -20,11 +20,17 @@ const Root = () => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control onChange={ e => setUser(e.target.value) } type="text" placeholder="Ingresar Usuario" />
+                            <Form.Control 
+                                onChange={ e => setUser(e.target.value) } 
+                                type="text" 
+                                placeholder="Ingresar Usuario" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Registrar Tareas</Form.Label>
-                            <Form.Control onChange={ e => setTask(e.target.value) } as="textarea" rows={3} />
+                            <Form.Control 
+                            onChange={ e => setTask(e.target.value) } 
+                            as="textarea" 
+                            rows={3} />
                         </Form.Group>
                         <Button onClick={ actionClick } variant="primary" type="submit">
                           Registrar
@@ -32,36 +38,37 @@ const Root = () => {
                     </Form>
                     </div>
                     <div className="col-sm-6">
-                        <Table striped bordered hover>
+                        <Table bordered hover responsive size="sm">
                             <thead>
                                 <tr>
                                     <th>User</th>
                                     <th>Activity</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     users.length === 0 ? 
-                                    (
-                                        <tr>
-                                            <td>No hay datos</td>
-                                            <td>#</td>
-                                        </tr>
-                                    ):
+                                    (<tr><td>No hay datos</td><td>#</td><td>#</td></tr>):
                                     (
                                         users.map( element  => (
                                             <tr key={ shortid.generate() }>
                                                 <td>{ element.user }</td>
                                                 <td>{ element.task }</td>
+                                                <td>
+                                                    <div className="d-inline">
+                                                        <button className="btn btn-primary btn-sm mx-2">EDITAR</button>
+                                                        <button className="btn btn-danger btn-sm">ELIMINAR</button>
+                                                    </div>
+                                                </td>
                                             </tr>)
-                                        ) 
+                                        )
                                     )                
                                 }
                             </tbody>
                         </Table>
                     </div>    
-                </div>
-                
+                </div>                
             </div>                      
         </Fragment>
     )
